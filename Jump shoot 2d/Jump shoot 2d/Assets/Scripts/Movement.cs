@@ -24,12 +24,14 @@ public class Movement : MonoBehaviour {
             Midjump = true;
             mousePosition = Input.mousePosition;
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            rb2D.AddForce(mousePosition*moveSpeed);
+            rb2D.AddForce((mousePosition-transform.position)*moveSpeed);
         }
 
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Midjump = false;
+        //rb2D.velocity = Vector3.zero;
+        
     }
 }
