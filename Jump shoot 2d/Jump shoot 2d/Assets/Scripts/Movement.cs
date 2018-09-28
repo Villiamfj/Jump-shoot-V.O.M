@@ -6,29 +6,30 @@ public class Movement : MonoBehaviour {
     private Vector3 mousePosition;
     public float moveSpeed;
     public Rigidbody2D rb2D;
-    public float timeStamp;
-    public float coolDownPeriodInSeconds;
-    Camera cam;
+
+    bool Midjump;
     // Use this for initialization
     void Start()
     {
-        cam = Camera.main;
-        timeStamp = Time.time + coolDownPeriodInSeconds;
         rb2D = GetComponent<Rigidbody2D>();
+        Midjump = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        if (Input.GetMouseButtonDown(1) & timeStamp <= Time.time)
+        if (Input.GetMouseButtonDown(1) & Midjump == false)
         {
+            Midjump = true;
             mousePosition = Input.mousePosition;
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
             rb2D.AddForce(mousePosition*moveSpeed);
-            //transform.position = Vector2.Lerp(transform.position, mousePosition, moveSpeed);
-            timeStamp = Time.time + coolDownPeriodInSeconds;
         }
 
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Midjump = false;
     }
 }
