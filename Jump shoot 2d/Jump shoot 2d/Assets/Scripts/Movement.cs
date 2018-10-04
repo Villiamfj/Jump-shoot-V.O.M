@@ -7,11 +7,13 @@ public class Movement : MonoBehaviour {
     public float moveSpeed;
     public Rigidbody2D rb2D;
     public GameObject ShotBullet;
-
+    public float firerate;
+    float nextfire;
     bool Midjump;
     // Use this for initialization
     void Start()
     {
+
         rb2D = GetComponent<Rigidbody2D>();
         Midjump = false;
     }
@@ -29,8 +31,9 @@ public class Movement : MonoBehaviour {
         }
 
         //shoot
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && Time.time > nextfire)
         {
+            nextfire = Time.time + firerate;
             Instantiate(ShotBullet, transform.position,Quaternion.identity);
         }
 
