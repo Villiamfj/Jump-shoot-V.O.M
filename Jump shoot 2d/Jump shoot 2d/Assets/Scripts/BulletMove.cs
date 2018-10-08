@@ -9,13 +9,26 @@ public class BulletMove : MonoBehaviour {
     public float Bulletspeed;
     public float lifetime;
     public GameObject wall;
-	// Use this for initialization
-	void Start () {
+
+    public float bulletVelocity;
+    // Use this for initialization
+    void Start () {
+
+        /*
         rb = GetComponent<Rigidbody2D>();
         mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
         Vector3 vej = mousePosition - transform.position;
         rb.velocity = vej*Bulletspeed;
+        */
+        Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        Vector2 direction = (Vector2)((worldMousePos - transform.position));
+        direction.Normalize();
+        // Adds velocity to the bullet
+        GetComponent<Rigidbody2D>().velocity = direction * bulletVelocity;
+
+
         Destroy(gameObject, lifetime);
     }
 	
