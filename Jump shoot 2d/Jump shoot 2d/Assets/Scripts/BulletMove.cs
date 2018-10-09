@@ -10,6 +10,7 @@ public class BulletMove : MonoBehaviour {
     public float lifetime;
     public GameObject wall;
 
+
     public float bulletVelocity;
     // Use this for initialization
     void Start () {
@@ -36,4 +37,14 @@ public class BulletMove : MonoBehaviour {
 	void Update () {
 
 	}
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Destroy(collision.gameObject, 0.1f);
+            Win.reference.EnemyKilled += 1;
+        }
+        Destroy(gameObject, 0.1f);
+    }
 }

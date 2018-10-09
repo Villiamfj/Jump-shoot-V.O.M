@@ -49,9 +49,4 @@ public class Fire : MonoBehaviour {
         }
 
     }
-
-    void shoot()
-    {
-
-    }
 }
