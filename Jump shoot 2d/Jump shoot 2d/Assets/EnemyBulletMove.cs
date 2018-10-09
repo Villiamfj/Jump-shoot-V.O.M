@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletMove : MonoBehaviour {
+public class EnemyBulletMove : MonoBehaviour {
     private Vector3 mousePosition;
     public Rigidbody2D rb;
     public GameObject player;
@@ -12,7 +12,8 @@ public class BulletMove : MonoBehaviour {
 
     public float bulletVelocity;
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
 
         /*
         rb = GetComponent<Rigidbody2D>();
@@ -21,9 +22,8 @@ public class BulletMove : MonoBehaviour {
         Vector3 vej = mousePosition - transform.position;
         rb.velocity = vej*Bulletspeed;
         */
-        Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        Vector2 direction = (Vector2)((worldMousePos - transform.position));
+        Vector2 direction = (Vector2)((player.transform.position - transform.position));
         direction.Normalize();
         // Adds velocity to the bullet
         GetComponent<Rigidbody2D>().velocity = direction * bulletVelocity;
@@ -31,18 +31,18 @@ public class BulletMove : MonoBehaviour {
 
         Destroy(gameObject, lifetime);
     }
-	
-	// Update is called once per frame
-	void Update () {
 
-	}
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Player")
         {
             Destroy(collision.gameObject, 0.1f);
-            Win.reference.EnemyKilled += 1;
         }
         Destroy(gameObject, 0.1f);
     }
