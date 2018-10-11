@@ -24,14 +24,7 @@ public class Fire : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        /*
-        //shoot
-        if (Input.GetMouseButton(0) && Time.time > nextfire)
-        {
-            nextfire = Time.time + fireRate;
-            Instantiate(ShotBullet, transform.position, Quaternion.identity);
-        }
-        */
+
         if (Input.GetMouseButton(0) && Time.time > nextfire)
         {
             nextfire = Time.time + fireRate;

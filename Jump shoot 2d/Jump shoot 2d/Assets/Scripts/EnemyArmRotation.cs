@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArmRotation : MonoBehaviour {
+public class EnemyArmRotation : MonoBehaviour {
+    public GameObject Player;
 
-
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
-
-    // Update is called once per frame
-    void Update()
-    {
-        Vector2 mouse = Camera.main.ScreenToViewportPoint(Input.mousePosition);        //Mouse position
+	
+	// Update is called once per frame
+	void Update () {
+        Vector2 mouse = Camera.main.WorldToViewportPoint(Player.transform.position);        //Mouse position
         Vector3 objpos = Camera.main.WorldToViewportPoint(transform.position);        //Object position on screen
         Vector2 relobjpos = new Vector2(objpos.x - 0.5f, objpos.y - 0.5f);            //Set coordinates relative to object
         Vector2 relmousepos = new Vector2(mouse.x - 0.5f, mouse.y - 0.5f) - relobjpos;

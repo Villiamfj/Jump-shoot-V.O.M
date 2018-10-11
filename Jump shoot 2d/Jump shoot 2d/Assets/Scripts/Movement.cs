@@ -7,13 +7,11 @@ public class Movement : MonoBehaviour {
     private Vector3 mousePosition;
     public float moveSpeed;
     public Rigidbody2D rb2D;
-    
     bool Midjump;
 
     // Use this for initialization
     void Start()
     {
-
         rb2D = GetComponent<Rigidbody2D>();
         Midjump = false;
     }

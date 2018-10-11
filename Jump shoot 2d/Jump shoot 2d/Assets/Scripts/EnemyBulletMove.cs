@@ -5,10 +5,9 @@ using UnityEngine;
 public class EnemyBulletMove : MonoBehaviour {
     private Vector3 mousePosition;
     public Rigidbody2D rb;
-    public GameObject player;
     public float Bulletspeed;
     public float lifetime;
-
+    public GameObject target;
 
     public float bulletVelocity;
     // Use this for initialization
@@ -22,8 +21,8 @@ public class EnemyBulletMove : MonoBehaviour {
         Vector3 vej = mousePosition - transform.position;
         rb.velocity = vej*Bulletspeed;
         */
-
-        Vector2 direction = (Vector2)((player.transform.position - transform.position));
+        target = GameObject.Find("Player");
+        Vector2 direction = (Vector2)((target.transform.position - transform.position));
         direction.Normalize();
         // Adds velocity to the bullet
         GetComponent<Rigidbody2D>().velocity = direction * bulletVelocity;
