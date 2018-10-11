@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Win : MonoBehaviour {
     public static Win reference;
@@ -18,11 +19,15 @@ public class Win : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (EnemyKilled == EnemyCount)
+		if (EnemyKilled >= EnemyCount)
         {
             //Win Text
             WinText.SetActive(true);
-            //next Scene
+            int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+            if (SceneManager.sceneCountInBuildSettings > nextSceneIndex)
+            {
+                SceneManager.LoadScene(nextSceneIndex);
+            }
         }
 	}
 }
