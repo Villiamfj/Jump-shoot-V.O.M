@@ -31,6 +31,7 @@ public class EnemyBulletMove : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        AudioManager.audioManager.playSound(1);
         if (collision.gameObject.tag == "Player")
         {
             Destroy(collision.gameObject, 0.1f);

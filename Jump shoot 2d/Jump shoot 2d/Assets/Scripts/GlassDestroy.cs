@@ -7,7 +7,6 @@ public class GlassDestroy : MonoBehaviour {
 	void Start () {
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		
 	}
@@ -16,6 +15,8 @@ public class GlassDestroy : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player")
         {
+            AudioManager.audioManager.playSound(0);
+            //audiosource.clip = GlassBreak;
             Destroy(gameObject);
         }
     }

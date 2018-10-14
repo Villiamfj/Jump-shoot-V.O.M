@@ -14,13 +14,6 @@ public class BulletMove : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        /*
-        rb = GetComponent<Rigidbody2D>();
-        mousePosition = Input.mousePosition;
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        Vector3 vej = mousePosition - transform.position;
-        rb.velocity = vej*Bulletspeed;
-        */
         Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         Vector2 direction = (Vector2)((worldMousePos - transform.position));
@@ -39,6 +32,7 @@ public class BulletMove : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        AudioManager.audioManager.playSound(1);
         if (collision.gameObject.tag == "Enemy")
         {
             Destroy(collision.gameObject, 0.1f);

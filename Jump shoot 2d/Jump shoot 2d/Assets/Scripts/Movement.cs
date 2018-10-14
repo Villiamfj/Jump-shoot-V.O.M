@@ -25,6 +25,7 @@ public class Movement : MonoBehaviour {
         //Jump
         if (Input.GetMouseButtonDown(1) && Midjump == false && !(mousePosition.y <= transform.position.y + 0.5f))
         {
+            AudioManager.audioManager.playSound(2);
             Midjump = true;
             rb2D.AddForce((mousePosition-transform.position)*moveSpeed);
         }
