@@ -27,6 +27,7 @@ public class Fire : MonoBehaviour {
 
         if (Input.GetMouseButton(0) && Time.time > nextfire)
         {
+            AudioManager.audioManager.playSound(1);
             nextfire = Time.time + fireRate;
             Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
