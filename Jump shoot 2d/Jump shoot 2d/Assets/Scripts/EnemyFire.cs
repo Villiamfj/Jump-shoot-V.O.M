@@ -27,7 +27,8 @@ public class EnemyFire : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        Vector2 PlayerPosition = new Vector2(Player.transform.position.x, Player.transform.position.y);//Camera.main.WorldToViewportPoint(Player.transform.position).x, Camera.main.WorldToViewportPoint(Player.transform.position).y);
+        
+        Vector2 PlayerPosition = new Vector2(Player.transform.position.x, Player.transform.position.y);
         Vector2 FirePosition = new Vector2(transform.position.x,transform.position.y);
         RaycastHit2D hit = Physics2D.Raycast(FirePosition, PlayerPosition - FirePosition, 100, WhatToHit);
         Debug.DrawLine(FirePosition, (PlayerPosition - FirePosition) * 100, Color.cyan);
@@ -35,9 +36,10 @@ public class EnemyFire : MonoBehaviour {
         {
             if (hit.collider.tag == "Player" && Time.time > nextfire)
             {
+                AudioManager.audioManager.playSound(1);
                 nextfire = Time.time + fireRate;
 
-                Vector3 worldMousePos = Player.transform.position;//Camera.main.WorldToViewportPoint(Player.transform.position);
+                Vector3 worldMousePos = Player.transform.position;
 
                 Vector2 direction = (Vector2)((worldMousePos - transform.position));
                 direction.Normalize();
